@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import it.svario.xpathapi.jaxp.XPathAPI;
 import org.testng.annotations.Test;
-import org.w3c.dom.Node;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
