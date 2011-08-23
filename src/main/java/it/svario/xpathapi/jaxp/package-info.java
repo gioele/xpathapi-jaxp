@@ -5,7 +5,7 @@
  * A simple to use XPath API inspired by Apache's XPathAPI (JAXP version).
  * 
  * <p>
- * XPathAPI offers a simple methods to select nodes on XML document trees
+ * XPathAPI offers simple methods to select nodes on XML document trees
  * using XPath expressions.
  * 
  * <p>
@@ -18,7 +18,7 @@
  * 
  * <p>
  * That single line is equivalent to this longer and more complex piece of
- * code
+ * code:
  * 
  * <pre>
  * XPathFactory xpathFactory = XPathFactory.newInstance();
