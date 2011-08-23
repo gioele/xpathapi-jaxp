@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.svario.xpathapi</groupId>
 	<artifactId>xpathapi-jaxp</artifactId>
-	<version>0.1</version>
+	<version>0.1-SNAPSHOT</version>
 	<name>XPathAPI (JAXP)</name>
 	<description>An implementation of Apache's XPathAPI for JAXP</description>
 	<inceptionYear>2011</inceptionYear>
@@ -11,7 +11,6 @@
 	<scm>
 		<connection>scm:git:git://gitorious.org/xpathapi/xpathapi-jaxp.git</connection>
 		<developerConnection>scm:git:git://gitorious.org/xpathapi/xpathapi-jaxp.git</developerConnection>
-		<tag>v0.1</tag>
 		<url>https://gitorious.org/xpathapi/xpathapi-jaxp</url>
 	</scm>
 	<developers>
