@@ -6,17 +6,18 @@ package it.svario.xpathapi.jaxp.test;
 import java.util.*;
 import it.svario.xpathapi.jaxp.XPathAPI;
 import org.testng.annotations.Test;
+import org.w3c.dom.NodeList;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
-public class NodeList extends TestBase {
-	public NodeList() throws Exception {
+public class NodeListTest extends TestBase {
+	public NodeListTest() throws Exception {
 		super();
 	}
 
 	@Test
 	public void selectNodeList() throws Exception {
-		org.w3c.dom.NodeList nodes = XPathAPI.selectNodeList(doc, "//b");
+		NodeList nodes = XPathAPI.selectNodeList(doc, "//b");
 
 		assertNotNull(nodes);
 		assertEquals(nodes.getLength(), 4);

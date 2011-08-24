@@ -9,18 +9,19 @@ import java.util.Collections;
 import java.util.List;
 import org.testng.annotations.Test;
 import org.w3c.dom.*;
+import org.w3c.dom.traversal.NodeIterator;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
-public class NodeIterator extends TestBase {
-	public NodeIterator() throws Exception {
+public class NodeIteratorTest extends TestBase {
+	public NodeIteratorTest() throws Exception {
 		super();
 	}
 
 	@Test
 	public void selectNodeIterator() throws Exception {
 		String[] expectedTexts = { "aabb11", "aabb33", "ccbb", "bb" };
-		org.w3c.dom.traversal.NodeIterator it = XPathAPI.selectNodeIterator(doc, "//b");
+		NodeIterator it = XPathAPI.selectNodeIterator(doc, "//b");
 
 		assertNotNull(it);
 

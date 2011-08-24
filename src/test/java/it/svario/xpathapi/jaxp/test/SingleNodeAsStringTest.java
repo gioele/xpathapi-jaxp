@@ -10,8 +10,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
-public class SingleNodeAsString extends TestBase {
-	public SingleNodeAsString() throws Exception {
+public class SingleNodeAsStringTest extends TestBase {
+	public SingleNodeAsStringTest() throws Exception {
 		super();
 	}
 	

@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
-public class NodeListAsStrings extends TestBase {
-	public NodeListAsStrings() throws Exception {
+public class NodeListAsStringsTest extends TestBase {
+	public NodeListAsStringsTest() throws Exception {
 		super();
 	}
 

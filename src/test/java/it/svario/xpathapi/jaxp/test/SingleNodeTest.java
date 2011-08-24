@@ -11,8 +11,8 @@ import org.w3c.dom.*;
 import static org.testng.Assert.*;
 
 @SuppressWarnings("javadoc")
-public class SingleNode extends TestBase {
-	public SingleNode() throws Exception {
+public class SingleNodeTest extends TestBase {
+	public SingleNodeTest() throws Exception {
 		super();
 	}
 
