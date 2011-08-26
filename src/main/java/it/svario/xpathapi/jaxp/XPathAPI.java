@@ -212,6 +212,11 @@ public class XPathAPI {
 	 * required, use {@link #selectNodeList(Node, String, Map)} or
 	 * {@link #selectNodeList(Node, String, Node)}.
 	 * 
+	 * <p>
+	 * It is better to use the {@link #selectListOfNodes(Node, String)} method
+	 * because it returns a {@code List<Node>} instead of a legacy
+	 * {@code org.w3c.dom.NodeList}.
+	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
@@ -219,6 +224,8 @@ public class XPathAPI {
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
+	 * 
+	 * @see #selectListOfNodes(Node, String)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString) throws XPathException {
 		return selectNodeList(contextNode, xpathString, contextNode);
@@ -235,6 +242,11 @@ public class XPathAPI {
 	 * those available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
+	 * <p>
+	 * It is better to use the {@link #selectListOfNodes(Node, String, Node)}
+	 * method because it returns a {@code List<Node>} instead of a legacy
+	 * {@code org.w3c.dom.NodeList}.
+	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
@@ -244,6 +256,8 @@ public class XPathAPI {
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
+	 * 
+	 * @see #selectListOfNodes(Node, String, Node)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(namespaceNode);
@@ -261,6 +275,11 @@ public class XPathAPI {
 	 * only those available in {@code contextNode}, but also the ones defined
 	 * in the {@code namespaces} mapping.
 	 * 
+	 * <p>
+	 * It is better to use the {@link #selectListOfNodes(Node, String, Map)}
+	 * method because it returns a {@code List<Node>} instead of a legacy
+	 * {@code org.w3c.dom.NodeList}.
+	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
@@ -269,6 +288,8 @@ public class XPathAPI {
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
+	 * 
+	 * @see #selectListOfNodes(Node, String, Map)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(contextNode, namespaces);
