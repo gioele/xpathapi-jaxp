@@ -16,9 +16,8 @@ import org.w3c.dom.traversal.NodeIterator;
  * The container for the various static methods exposed by the XPathAPI.
  * 
  * <p>
- * See {@linkplain it.svario.xpathapi.jaxp the XPathAPI package
- * documentation} for an overview of XPathAPI and examples of how to
- * use these methods.
+ * See {@linkplain it.svario.xpathapi.jaxp the XPathAPI package documentation}
+ * for an overview of XPathAPI and examples of how to use these methods.
  * 
  * @see it.svario.xpathapi.jaxp
  */
@@ -204,7 +203,8 @@ public class XPathAPI {
 	}
 
 	/**
-	 * Selects all the nodes that match the given XPath expression.
+	 * Selects all the nodes that match the given XPath expression (returns a
+	 * {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
@@ -226,7 +226,8 @@ public class XPathAPI {
 
 	/**
 	 * Selects all the nodes that match the given XPath expression, taking
-	 * into account all namespaces found in {@code namespaceNode}.
+	 * into account all namespaces found in {@code namespaceNode} (returns a
+	 * {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
 	 * This function behaves like {@link #selectNodeList(Node, String)}, but
@@ -251,7 +252,8 @@ public class XPathAPI {
 
 	/**
 	 * Selects all the nodes that match the given XPath expression, taking
-	 * into account the namespace mappings defined in {@code namespaces}.
+	 * into account the namespace mappings defined in {@code namespaces}
+	 * (returns a {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
 	 * This function behaves like {@link #selectNodeList(Node, String)}, but
@@ -284,6 +286,92 @@ public class XPathAPI {
 		NodeList nodes = (NodeList) xpathExpr.evaluate(contextNode, XPathConstants.NODESET);
 
 		return nodes;
+	}
+
+	/**
+	 * Selects all the nodes that match the given XPath expression (returns a
+	 * {@code List<Node>} list).
+	 * 
+	 * <p>
+	 * The only namespaces prefixes usable in the XPath expression are those
+	 * available in {@code contextNode}. If other additional prefixes are
+	 * required, use {@link #selectListOfNodes(Node, String, Map)} or
+	 * {@link #selectListOfNodes(Node, String, Node)}.
+	 * 
+	 * @param contextNode the node from which the XPath expression is
+	 *            evaluated
+	 * @param xpathString the XPath expression to evaluate
+	 * 
+	 * @return all the nodes that match the given XPath expression
+	 * 
+	 * @throws XPathException
+	 */
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString) throws XPathException {
+		return selectListOfNodes(contextNode, xpathString, contextNode);
+	}
+
+	/**
+	 * Selects all the nodes that match the given XPath expression, taking
+	 * into account all namespaces found in {@code namespaceNode} (returns a
+	 * {@code List<Node>} list).
+	 * 
+	 * <p>
+	 * This function behaves like {@link #selectListOfNodes(Node, String)},
+	 * but the namespace prefixes that can be used in the XPath expression are
+	 * not those available in {@code contextNode}, but those available in
+	 * {@code namespaceNode}.
+	 * 
+	 * @param contextNode the node from which the XPath expression is
+	 *            evaluated
+	 * @param xpathString the XPath expression to evaluate
+	 * @param namespaceNode the node from which all the namespace declarations
+	 *            will be taken
+	 * 
+	 * @return all the nodes that match the given XPath expression
+	 * 
+	 * @throws XPathException
+	 */
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
+		NamespaceContext nsContext = new NodeNamespaceContext(namespaceNode);
+		return selectListOfNodes(contextNode, xpathString, nsContext);
+	}
+
+	/**
+	 * Selects all the nodes that match the given XPath expression, taking
+	 * into account the namespace mappings defined in {@code namespaces}
+	 * (returns a {@code List<Node>} list).
+	 * 
+	 * <p>
+	 * This function behaves like {@link #selectListOfNodes(Node, String)},
+	 * but the namespace prefixes that can be used in the XPath expression are
+	 * not only those available in {@code contextNode}, but also the ones
+	 * defined in the {@code namespaces} mapping.
+	 * 
+	 * @param contextNode the node from which the XPath expression is
+	 *            evaluated
+	 * @param xpathString the XPath expression to evaluate
+	 * @param namespaces a mapping between namespace prefixes and URIs
+	 * 
+	 * @return all the nodes that match the given XPath expression
+	 * 
+	 * @throws XPathException
+	 */
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
+		NamespaceContext nsContext = new NodeNamespaceContext(contextNode, namespaces);
+		return selectListOfNodes(contextNode, xpathString, nsContext);
+	}
+
+	private static List<Node> selectListOfNodes(Node contextNode, String xpathString, NamespaceContext nsContext) throws XPathException {
+		NodeList nodeList = selectNodeList(contextNode, xpathString, nsContext);
+		int listLength = nodeList.getLength();
+		List<Node> list = new ArrayList<Node>(listLength);
+
+		for (int i = 0; i < listLength; i++) {
+			Node node = nodeList.item(i);
+			list.add(node);
+		}
+
+		return list;
 	}
 
 	/**
