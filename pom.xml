@@ -13,6 +13,9 @@
 		<developerConnection>scm:git:git@github.com:gioele/xpathapi-jaxp.git</developerConnection>
 		<url>https://github.com/gioele/xpathapi-jaxp</url>
 	</scm>
+	<issueManagement>
+		<url>https://github.com/gioele/xpathapi-jaxp/issues</url>
+	</issueManagement>
 	<developers>
 		<developer>
 			<id>gioele</id>
