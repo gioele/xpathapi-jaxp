@@ -120,6 +120,15 @@ Maven Central (<http://search.maven.org>) has also instructions on how
 to install XPathAPI using Buildr, Ivy or Groovy.
 
 
+Documentation
+-------------
+
+The API documentation in JavaDoc format is available at
+<http://svario.it/xpathapi/doc>.
+
+The documentation covers 100% of the public methods.
+
+
 Authors
 -------
 
