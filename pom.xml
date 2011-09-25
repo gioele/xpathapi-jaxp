@@ -9,9 +9,9 @@
 	<inceptionYear>2011</inceptionYear>
 	<url>http://svario.it/xpathapi</url>
 	<scm>
-		<connection>scm:git:git://gitorious.org/xpathapi/xpathapi-jaxp.git</connection>
-		<developerConnection>scm:git:git@gitorious.org:xpathapi/xpathapi-jaxp.git</developerConnection>
-		<url>https://gitorious.org/xpathapi/xpathapi-jaxp</url>
+		<connection>scm:git:git://github.com/gioele/xpathapi-jaxp.git</connection>
+		<developerConnection>scm:git:git@github.com:gioele/xpathapi-jaxp.git</developerConnection>
+		<url>https://github.com/gioele/xpathapi-jaxp</url>
 	</scm>
 	<developers>
 		<developer>
