@@ -46,7 +46,7 @@ the nodes that match the passed XPath.
 To select a single node from a tree, you can use the `selectSingleNode`
 method.
 
-	Node me = XPathAPI.selectSingleNode(doc, "//person[@id =' + myID + "']");
+	Node me = XPathAPI.selectSingleNode(doc, "//person[@id ='" + myID + "']");
 
 ### Select text content instead of nodes
 
@@ -54,7 +54,7 @@ Often all you interested in is the text contained in an element or in
 an attribute, not the node itself. In such cases you can get these
 strings directly.
 
-	String myName = XPathAPI.selectSingleNode(doc, "//person[@id =' + myID + "']/@firstName");
+	String myName = XPathAPI.selectSingleNode(doc, "//person[@id ='" + myID + "']/@firstName");
 
 	List<Strings> surnames = XPathAPI.selectNodeListAsStrings(doc, '//person/@surname');
 
