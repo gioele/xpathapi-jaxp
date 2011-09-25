@@ -1,7 +1,7 @@
 XPathAPI
 ========
 
-A simple to use XPath API inspired by Apache's XPathAPI.
+Select XML nodes using XPath and a single line of Java code.
 
 XPathAPI offers simple methods to select nodes on XML document trees
 using XPath expressions. These methods relieve you from writing many
@@ -134,6 +134,7 @@ Authors
 
 * Gioele Barabucci <gioele@svario.it>
 
+The original core of XPathAPI has been inspired by Apache's XPathAPI.
 
 License
 -------

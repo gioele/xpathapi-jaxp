@@ -5,7 +5,7 @@
 	<artifactId>xpathapi-jaxp</artifactId>
 	<version>0.3</version>
 	<name>XPathAPI (JAXP)</name>
-	<description>A simple to use XPath API inspired by Apache’s XPathAPI (JAXP version)</description>
+	<description>Select XML nodes using XPath and a single line of Java code</description>
 	<inceptionYear>2011</inceptionYear>
 	<url>http://svario.it/xpathapi</url>
 	<scm>

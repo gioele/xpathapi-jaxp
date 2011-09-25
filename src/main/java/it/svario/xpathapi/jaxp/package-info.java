@@ -2,7 +2,7 @@
 // See the `UNLICENSE` file or <http://unlicense.org/> for more details.
 
 /**
- * A simple to use XPath API inspired by Apache's XPathAPI (JAXP version).
+ * Select XML nodes using XPath and a single line of Java code.
  * 
  * <p>
  * XPathAPI offers simple methods to select nodes on XML document trees
