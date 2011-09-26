@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.svario.xpathapi</groupId>
 	<artifactId>xpathapi-jaxp</artifactId>
-	<version>0.3</version>
+	<version>0.3-SNAPSHOT</version>
 	<name>XPathAPI (JAXP)</name>
 	<description>Select XML nodes using XPath and a single line of Java code</description>
 	<inceptionYear>2011</inceptionYear>
