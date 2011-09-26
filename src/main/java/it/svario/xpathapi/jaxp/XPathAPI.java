@@ -34,8 +34,8 @@ public class XPathAPI {
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectSingleNode(Node, String, Map)} or
-	 * {@link #selectSingleNode(Node, String, Node)}.
+	 * required, use {@link #selectSingleNode(Node, String, Map, String...)}
+	 * or {@link #selectSingleNode(Node, String, Node, String...)}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -57,10 +57,11 @@ public class XPathAPI {
 	 * additional namespace from the {@code namespaces} mapping.
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectSingleNode(Node, String)}, but
-	 * the namespace prefixes that can be used in the XPath expression are not
-	 * only those available in {@code contextNode}, but also the ones defined
-	 * in the {@code namespaces} mapping.
+	 * This function behaves like
+	 * {@link #selectSingleNode(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not only those
+	 * available in {@code contextNode}, but also the ones defined in the
+	 * {@code namespaces} mapping.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -84,9 +85,10 @@ public class XPathAPI {
 	 * into account all namespaces found in {@code namespaceNode}.
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectSingleNode(Node, String)}, but
-	 * the namespace prefixes that can be used in the XPath expression are not
-	 * those available in {@code contextNode}, but those available in
+	 * This function behaves like
+	 * {@link #selectSingleNode(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not those
+	 * available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -128,8 +130,9 @@ public class XPathAPI {
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectSingleNodeAsString(Node, String, Map)} or
-	 * {@link #selectSingleNodeAsString(Node, String, Node)}.
+	 * required, use
+	 * {@link #selectSingleNodeAsString(Node, String, Map, String...)} or
+	 * {@link #selectSingleNodeAsString(Node, String, Node, String...)}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -142,7 +145,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectSingleNode(Node, String)
+	 * @see #selectSingleNode(Node, String, String...)
 	 */
 	public static String selectSingleNodeAsString(Node contextNode, String xpathString, String... args) throws XPathException {
 		return selectSingleNodeAsString(contextNode, xpathString, contextNode, args);
@@ -173,7 +176,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectSingleNode(Node, String, Map)
+	 * @see #selectSingleNode(Node, String, Map, String...)
 	 */
 	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
 		Node node = selectSingleNode(contextNode, xpathString, namespaces, args);
@@ -206,7 +209,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectSingleNode(Node, String, Node)
+	 * @see #selectSingleNode(Node, String, Node, String...)
 	 */
 	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		Node node = selectSingleNode(contextNode, xpathString, namespaceNode, args);
@@ -234,12 +237,13 @@ public class XPathAPI {
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectNodeList(Node, String, Map)} or
-	 * {@link #selectNodeList(Node, String, Node)}.
+	 * required, use {@link #selectNodeList(Node, String, Map, String...)} or
+	 * {@link #selectNodeList(Node, String, Node, String...)}.
 	 * 
 	 * <p>
-	 * It is better to use the {@link #selectListOfNodes(Node, String)} method
-	 * because it returns a {@code List<Node>} instead of a legacy
+	 * It is better to use the
+	 * {@link #selectListOfNodes(Node, String, String...)} method because it
+	 * returns a {@code List<Node>} instead of a legacy
 	 * {@code org.w3c.dom.NodeList}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -252,7 +256,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectListOfNodes(Node, String)
+	 * @see #selectListOfNodes(Node, String, String...)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString, String... args) throws XPathException {
 		return selectNodeList(contextNode, xpathString, contextNode, args);
@@ -264,14 +268,16 @@ public class XPathAPI {
 	 * {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectNodeList(Node, String)}, but
-	 * the namespace prefixes that can be used in the XPath expression are not
-	 * those available in {@code contextNode}, but those available in
+	 * This function behaves like
+	 * {@link #selectNodeList(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not those
+	 * available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
 	 * <p>
-	 * It is better to use the {@link #selectListOfNodes(Node, String, Node)}
-	 * method because it returns a {@code List<Node>} instead of a legacy
+	 * It is better to use the
+	 * {@link #selectListOfNodes(Node, String, Node, String...)} method
+	 * because it returns a {@code List<Node>} instead of a legacy
 	 * {@code org.w3c.dom.NodeList}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -286,7 +292,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectListOfNodes(Node, String, Node)
+	 * @see #selectListOfNodes(Node, String, Node, String...)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(namespaceNode);
@@ -299,14 +305,16 @@ public class XPathAPI {
 	 * (returns a {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectNodeList(Node, String)}, but
-	 * the namespace prefixes that can be used in the XPath expression are not
-	 * only those available in {@code contextNode}, but also the ones defined
-	 * in the {@code namespaces} mapping.
+	 * This function behaves like
+	 * {@link #selectNodeList(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not only those
+	 * available in {@code contextNode}, but also the ones defined in the
+	 * {@code namespaces} mapping.
 	 * 
 	 * <p>
-	 * It is better to use the {@link #selectListOfNodes(Node, String, Map)}
-	 * method because it returns a {@code List<Node>} instead of a legacy
+	 * It is better to use the
+	 * {@link #selectListOfNodes(Node, String, Map, String...)} method because
+	 * it returns a {@code List<Node>} instead of a legacy
 	 * {@code org.w3c.dom.NodeList}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -320,7 +328,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectListOfNodes(Node, String, Map)
+	 * @see #selectListOfNodes(Node, String, Map, String...)
 	 */
 	public static NodeList selectNodeList(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(contextNode, namespaces);
@@ -355,8 +363,8 @@ public class XPathAPI {
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectListOfNodes(Node, String, Map)} or
-	 * {@link #selectListOfNodes(Node, String, Node)}.
+	 * required, use {@link #selectListOfNodes(Node, String, Map, String...)}
+	 * or {@link #selectListOfNodes(Node, String, Node, String...)}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -378,9 +386,10 @@ public class XPathAPI {
 	 * {@code List<Node>} list).
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectListOfNodes(Node, String)},
-	 * but the namespace prefixes that can be used in the XPath expression are
-	 * not those available in {@code contextNode}, but those available in
+	 * This function behaves like
+	 * {@link #selectListOfNodes(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not those
+	 * available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -406,10 +415,11 @@ public class XPathAPI {
 	 * (returns a {@code List<Node>} list).
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectListOfNodes(Node, String)},
-	 * but the namespace prefixes that can be used in the XPath expression are
-	 * not only those available in {@code contextNode}, but also the ones
-	 * defined in the {@code namespaces} mapping.
+	 * This function behaves like
+	 * {@link #selectListOfNodes(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not only those
+	 * available in {@code contextNode}, but also the ones defined in the
+	 * {@code namespaces} mapping.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -449,8 +459,9 @@ public class XPathAPI {
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectNodeListAsStrings(Node, String, Map)} or
-	 * {@link #selectNodeListAsStrings(Node, String, Node)}.
+	 * required, use
+	 * {@link #selectNodeListAsStrings(Node, String, Map, String...)} or
+	 * {@link #selectNodeListAsStrings(Node, String, Node, String...)}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -462,7 +473,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectNodeList(Node, String)
+	 * @see #selectNodeList(Node, String, String...)
 	 */
 	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, String... args) throws XPathException {
 		return selectNodeListAsStrings(contextNode, xpathString, contextNode, args);
@@ -475,10 +486,10 @@ public class XPathAPI {
 	 * 
 	 * <p>
 	 * This function behaves like
-	 * {@link #selectNodeListAsStrings(Node, String)}, but the namespace
-	 * prefixes that can be used in the XPath expression are not only those
-	 * available in {@code contextNode}, but also the ones defined in the
-	 * {@code namespaces} mapping.
+	 * {@link #selectNodeListAsStrings(Node, String, String...)}, but the
+	 * namespace prefixes that can be used in the XPath expression are not
+	 * only those available in {@code contextNode}, but also the ones defined
+	 * in the {@code namespaces} mapping.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -491,7 +502,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectNodeList(Node, String, Map)
+	 * @see #selectNodeList(Node, String, Map, String...)
 	 */
 	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
 		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaces, args);
@@ -506,9 +517,9 @@ public class XPathAPI {
 	 * 
 	 * <p>
 	 * This function behaves like
-	 * {@link #selectNodeListAsStrings(Node, String)}, but the namespace
-	 * prefixes that can be used in the XPath expression are not those
-	 * available in {@code contextNode}, but those available in
+	 * {@link #selectNodeListAsStrings(Node, String, String...)}, but the
+	 * namespace prefixes that can be used in the XPath expression are not
+	 * those available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -523,7 +534,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectNodeList(Node, String, Node)
+	 * @see #selectNodeList(Node, String, Node, String...)
 	 */
 	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaceNode, args);
@@ -546,13 +557,14 @@ public class XPathAPI {
 	 * expression.
 	 * 
 	 * <p>
-	 * Same as {@link #selectNodeList(Node, String)} but returns a
+	 * Same as {@link #selectNodeList(Node, String, String...)} but returns a
 	 * {@code NodeIterator} instead of a simple {@code NodeList}.
 	 * 
 	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
-	 * required, use {@link #selectNodeIterator(Node, String, Node)}.
+	 * required, use
+	 * {@link #selectNodeIterator(Node, String, Node, String...)}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
@@ -565,7 +577,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectNodeList(Node, String)
+	 * @see #selectNodeList(Node, String, String...)
 	 */
 	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString, String... args) throws XPathException {
 		return selectNodeIterator(contextNode, xpathString, contextNode, args);
@@ -577,13 +589,14 @@ public class XPathAPI {
 	 * {@code namespaceNode}.
 	 * 
 	 * <p>
-	 * Same as {@link #selectNodeList(Node, String, Node)} but returns a
-	 * {@code NodeIterator} instead of a simple {@code NodeList}.
+	 * Same as {@link #selectNodeList(Node, String, Node, String...)} but
+	 * returns a {@code NodeIterator} instead of a simple {@code NodeList}.
 	 * 
 	 * <p>
-	 * This function behaves like {@link #selectNodeIterator(Node, String)},
-	 * but the namespace prefixes that can be used in the XPath expression are
-	 * not those available in {@code contextNode}, but those available in
+	 * This function behaves like
+	 * {@link #selectNodeIterator(Node, String, String...)}, but the namespace
+	 * prefixes that can be used in the XPath expression are not those
+	 * available in {@code contextNode}, but those available in
 	 * {@code namespaceNode}.
 	 * 
 	 * @param contextNode the node from which the XPath expression is
@@ -599,7 +612,7 @@ public class XPathAPI {
 	 * 
 	 * @throws XPathException
 	 * 
-	 * @see #selectNodeList(Node, String, Node)
+	 * @see #selectNodeList(Node, String, Node, String...)
 	 */
 	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		NodeList nodes = selectNodeList(contextNode, xpathString, namespaceNode, args);
