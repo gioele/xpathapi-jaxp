@@ -23,7 +23,7 @@ public class TemplateSubstitutionTest extends TestBase {
 	}
 
 	@Test
-	public void doNotReplacesNonTemplates() throws Exception {
+	public void doesNotReplacesNonTemplates() throws Exception {
 		Node node = XPathAPI.selectSingleNode(doc, "//b[contains(text(), '{}')]");
 
 		assertNull(node);
