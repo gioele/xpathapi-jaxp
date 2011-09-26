@@ -113,11 +113,6 @@ public class XPathAPI {
 	 * required, use {@link #selectSingleNodeAsString(Node, String, Map)} or
 	 * {@link #selectSingleNodeAsString(Node, String, Node)}.
 	 * 
-	 * <pre>
-	 * Node node = selectSingleNode(contextNode, xpathString);
-	 * return node.getTextContent();
-	 * </pre>
-	 * 
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
