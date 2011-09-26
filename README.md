@@ -48,6 +48,13 @@ method.
 
 	Node me = XPathAPI.selectSingleNode(doc, "//person[@id ='" + myID + "']");
 
+### Place-holders instead of cumbersome string concatenations
+
+To make code more readable, you can use the template mechanism. Put
+`{}` place-holders where you want the supplied arguments to appear.
+
+	Node me = XPathAPI.selectSingleNode(doc, "//person[@id ='{}']", myID);
+
 ### Select text content instead of nodes
 
 Often all you interested in is the text contained in an element or in
