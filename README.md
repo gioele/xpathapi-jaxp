@@ -72,7 +72,7 @@ Often all you interested in is the text contained in an element or in
 an attribute, not the node itself. In such cases you can get these
 strings directly.
 
-	String myName = XPathAPI.selectSingleNode(doc, "//person[@id ='" + myID + "']/@firstName");
+	String myName = XPathAPI.selectSingleNode(doc, "//person[@id ='{}']/@firstName", myID);
 
 	List<Strings> surnames = XPathAPI.selectNodeListAsStrings(doc, '//person/@surname');
 
