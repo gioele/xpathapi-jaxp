@@ -38,8 +38,8 @@ You should use XPathAPI because it…
 
 * makes code shorter and more readable,
 * provides Java Generics `List`s, not only older `NodeList` objects,
-* has a template mechanism that makes you avoid complex and error-prone
-  strings concatenations.
+* has a template mechanism that allow you to get rid of complex and
+  error-prone strings concatenations.
 
 
 Examples
