@@ -123,12 +123,12 @@ XPathAPI will also work fine (or better) if you use Saxon or Xerces.
 Installation
 ------------
 
-You can install XPathAPI adding it to you Maven dependencies:
+You can install XPathAPI adding it to your Maven dependencies:
 
 	<dependency>
 		<groupId>it.svario.xpathapi</groupId>
 		<artifactId>xpathapi-jaxp</artifactId>
-		<version>0.3</version>
+		<version>RELEASE</version>
 	</dependency>
 
 Alternatively, you can download the XPathAPI JAR and add it to your
