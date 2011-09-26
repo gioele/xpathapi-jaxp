@@ -26,6 +26,12 @@ public class XPathAPI {
 	 * Selects the first node that matches the given XPath expression.
 	 * 
 	 * <p>
+	 * Any "{@code {}}" place-holder in the XPath expression is replaced with
+	 * the content of the respective replacement string supplied in
+	 * {@code args}. Please note that no escaping is performed on the
+	 * replacement strings, beware of single and double quotes.
+	 * 
+	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
 	 * required, use {@link #selectSingleNode(Node, String, Map)} or
@@ -34,14 +40,16 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the first matching node or null in case the XPath evaluated to
 	 *         an empty node set
 	 * 
 	 * @throws XPathException
 	 */
-	public static Node selectSingleNode(Node contextNode, String xpathString) throws XPathException {
-		return selectSingleNode(contextNode, xpathString, contextNode);
+	public static Node selectSingleNode(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectSingleNode(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -58,14 +66,16 @@ public class XPathAPI {
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaces a mapping between namespace prefixes and URIs
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the first matching node or null in case the XPath evaluated to
 	 *         an empty node set
 	 * 
 	 * @throws XPathException
 	 */
-	public static Node selectSingleNode(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
-		NodeList nodes = selectNodeList(contextNode, xpathString, namespaces);
+	public static Node selectSingleNode(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
+		NodeList nodes = selectNodeList(contextNode, xpathString, namespaces, args);
 		return selectFirstNode(nodes);
 	}
 
@@ -84,14 +94,16 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the first matching node or null in case the XPath evaluated to
 	 *         an empty node set
 	 * 
 	 * @throws XPathException
 	 */
-	public static Node selectSingleNode(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
-		NodeList nodes = selectNodeList(contextNode, xpathString, namespaceNode);
+	public static Node selectSingleNode(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
+		NodeList nodes = selectNodeList(contextNode, xpathString, namespaceNode, args);
 		return selectFirstNode(nodes);
 	}
 
@@ -108,6 +120,12 @@ public class XPathAPI {
 	 * XPath expression.
 	 * 
 	 * <p>
+	 * Any "{@code {}}" place-holder in the XPath expression is replaced with
+	 * the content of the respective replacement string supplied in
+	 * {@code args}. Please note that no escaping is performed on the
+	 * replacement strings, beware of single and double quotes.
+	 * 
+	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
 	 * required, use {@link #selectSingleNodeAsString(Node, String, Map)} or
@@ -116,6 +134,8 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the content of the selected node or null in case the XPath
 	 *         evaluated to an empty node set
@@ -124,8 +144,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectSingleNode(Node, String)
 	 */
-	public static String selectSingleNodeAsString(Node contextNode, String xpathString) throws XPathException {
-		return selectSingleNodeAsString(contextNode, xpathString, contextNode);
+	public static String selectSingleNodeAsString(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectSingleNodeAsString(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -145,6 +165,8 @@ public class XPathAPI {
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaces a mapping between namespace prefixes and URIs
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the content of the selected node or null in case the XPath
 	 *         evaluated to an empty node set
@@ -153,8 +175,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectSingleNode(Node, String, Map)
 	 */
-	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
-		Node node = selectSingleNode(contextNode, xpathString, namespaces);
+	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
+		Node node = selectSingleNode(contextNode, xpathString, namespaces, args);
 		return selectNodeAsString(node);
 	}
 
@@ -176,6 +198,8 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return the content of the selected node or null in case the XPath
 	 *         evaluated to an empty node set
@@ -184,8 +208,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectSingleNode(Node, String, Node)
 	 */
-	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
-		Node node = selectSingleNode(contextNode, xpathString, namespaceNode);
+	public static String selectSingleNodeAsString(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
+		Node node = selectSingleNode(contextNode, xpathString, namespaceNode, args);
 		return selectNodeAsString(node);
 	}
 
@@ -202,6 +226,12 @@ public class XPathAPI {
 	 * {@code org.w3c.dom.NodeList} list).
 	 * 
 	 * <p>
+	 * Any "{@code {}}" place-holder in the XPath expression is replaced with
+	 * the content of the respective replacement string supplied in
+	 * {@code args}. Please note that no escaping is performed on the
+	 * replacement strings, beware of single and double quotes.
+	 * 
+	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
 	 * required, use {@link #selectNodeList(Node, String, Map)} or
@@ -215,6 +245,8 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
@@ -222,8 +254,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectListOfNodes(Node, String)
 	 */
-	public static NodeList selectNodeList(Node contextNode, String xpathString) throws XPathException {
-		return selectNodeList(contextNode, xpathString, contextNode);
+	public static NodeList selectNodeList(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectNodeList(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -247,6 +279,8 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
@@ -254,9 +288,9 @@ public class XPathAPI {
 	 * 
 	 * @see #selectListOfNodes(Node, String, Node)
 	 */
-	public static NodeList selectNodeList(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
+	public static NodeList selectNodeList(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(namespaceNode);
-		return selectNodeList(contextNode, xpathString, nsContext);
+		return selectNodeList(contextNode, xpathString, nsContext, args);
 	}
 
 	/**
@@ -279,6 +313,8 @@ public class XPathAPI {
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaces a mapping between namespace prefixes and URIs
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
@@ -286,16 +322,18 @@ public class XPathAPI {
 	 * 
 	 * @see #selectListOfNodes(Node, String, Map)
 	 */
-	public static NodeList selectNodeList(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
+	public static NodeList selectNodeList(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(contextNode, namespaces);
-		return selectNodeList(contextNode, xpathString, nsContext);
+		return selectNodeList(contextNode, xpathString, nsContext, args);
 	}
 
-	private static NodeList selectNodeList(Node contextNode, String xpathString, NamespaceContext nsContext) throws XPathException {
+	private static NodeList selectNodeList(Node contextNode, String xpathString, NamespaceContext nsContext, String... args) throws XPathException {
 		XPathFactory xpathFactory = XPathFactory.newInstance();
 		XPath xpath = xpathFactory.newXPath();
 
 		xpath.setNamespaceContext(nsContext);
+
+		xpathString = replacePlaceholders(xpathString, args);
 
 		XPathExpression xpathExpr = xpath.compile(xpathString);
 
@@ -309,6 +347,12 @@ public class XPathAPI {
 	 * {@code List<Node>} list).
 	 * 
 	 * <p>
+	 * Any "{@code {}}" place-holder in the XPath expression is replaced with
+	 * the content of the respective replacement string supplied in
+	 * {@code args}. Please note that no escaping is performed on the
+	 * replacement strings, beware of single and double quotes.
+	 * 
+	 * <p>
 	 * The only namespaces prefixes usable in the XPath expression are those
 	 * available in {@code contextNode}. If other additional prefixes are
 	 * required, use {@link #selectListOfNodes(Node, String, Map)} or
@@ -317,13 +361,15 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
 	 */
-	public static List<Node> selectListOfNodes(Node contextNode, String xpathString) throws XPathException {
-		return selectListOfNodes(contextNode, xpathString, contextNode);
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectListOfNodes(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -342,14 +388,16 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
 	 */
-	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(namespaceNode);
-		return selectListOfNodes(contextNode, xpathString, nsContext);
+		return selectListOfNodes(contextNode, xpathString, nsContext, args);
 	}
 
 	/**
@@ -367,18 +415,22 @@ public class XPathAPI {
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaces a mapping between namespace prefixes and URIs
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return all the nodes that match the given XPath expression
 	 * 
 	 * @throws XPathException
 	 */
-	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
+	public static List<Node> selectListOfNodes(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
 		NamespaceContext nsContext = new NodeNamespaceContext(contextNode, namespaces);
-		return selectListOfNodes(contextNode, xpathString, nsContext);
+		return selectListOfNodes(contextNode, xpathString, nsContext, args);
 	}
 
-	private static List<Node> selectListOfNodes(Node contextNode, String xpathString, NamespaceContext nsContext) throws XPathException {
+	private static List<Node> selectListOfNodes(Node contextNode, String xpathString, NamespaceContext nsContext, String... args) throws XPathException {
+		xpathString = replacePlaceholders(xpathString, args);
 		NodeList nodeList = selectNodeList(contextNode, xpathString, nsContext);
+
 		int listLength = nodeList.getLength();
 		List<Node> list = new ArrayList<Node>(listLength);
 
@@ -403,6 +455,8 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return a list with the textual content of the matching nodes
 	 * 
@@ -410,8 +464,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectNodeList(Node, String)
 	 */
-	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString) throws XPathException {
-		return selectNodeListAsStrings(contextNode, xpathString, contextNode);
+	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectNodeListAsStrings(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -430,6 +484,8 @@ public class XPathAPI {
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaces
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return a list with the textual content of the matching nodes
 	 * 
@@ -437,8 +493,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectNodeList(Node, String, Map)
 	 */
-	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Map<String, String> namespaces) throws XPathException {
-		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaces);
+	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Map<String, String> namespaces, String... args) throws XPathException {
+		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaces, args);
 
 		return nodeListAsStringList(nodeList);
 	}
@@ -460,6 +516,8 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return a list with the textual content of the matching nodes
 	 * 
@@ -467,8 +525,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectNodeList(Node, String, Node)
 	 */
-	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
-		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaceNode);
+	public static List<String> selectNodeListAsStrings(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
+		NodeList nodeList = selectNodeList(contextNode, xpathString, namespaceNode, args);
 
 		return nodeListAsStringList(nodeList);
 	}
@@ -499,6 +557,8 @@ public class XPathAPI {
 	 * @param contextNode the node from which the XPath expression is
 	 *            evaluated
 	 * @param xpathString the XPath expression to evaluate
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return an iterator over all the nodes that match the given XPath
 	 *         expression
@@ -507,8 +567,8 @@ public class XPathAPI {
 	 * 
 	 * @see #selectNodeList(Node, String)
 	 */
-	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString) throws XPathException {
-		return selectNodeIterator(contextNode, xpathString, contextNode);
+	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString, String... args) throws XPathException {
+		return selectNodeIterator(contextNode, xpathString, contextNode, args);
 	}
 
 	/**
@@ -531,6 +591,8 @@ public class XPathAPI {
 	 * @param xpathString the XPath expression to evaluate
 	 * @param namespaceNode the node from which all the namespace declarations
 	 *            will be taken
+	 * @param args an optional array of strings used to replace the
+	 *            "{@code {}}" place-holders in {@code xpathString}
 	 * 
 	 * @return an iterator over all the nodes that match the given XPath
 	 *         expression
@@ -539,8 +601,16 @@ public class XPathAPI {
 	 * 
 	 * @see #selectNodeList(Node, String, Node)
 	 */
-	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString, Node namespaceNode) throws XPathException {
-		NodeList nodes = selectNodeList(contextNode, xpathString, namespaceNode);
+	public static NodeIterator selectNodeIterator(Node contextNode, String xpathString, Node namespaceNode, String... args) throws XPathException {
+		NodeList nodes = selectNodeList(contextNode, xpathString, namespaceNode, args);
 		return new NodeListIterator(nodes);
+	}
+
+	private static String replacePlaceholders(String string, String... args) {
+		for (String arg : args) {
+			string = string.replace("{}", arg);
+		}
+
+		return string;
 	}
 }
