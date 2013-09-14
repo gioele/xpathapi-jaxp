@@ -81,4 +81,17 @@ public class SingleNodeTest extends TestBase {
 
 		assertNotNull(node);
 	}
+
+	@Test
+	public void doesNotIgnoreDefaultNSInRoot() throws Exception {
+		String docStr = "<a xmlns='abc'><b/></a>";
+		Document doc = documentFromString(docStr);
+
+		Map<String, String> nsMap = new HashMap<String, String>();
+		nsMap.put("k", "abc");
+
+		Node aWithoutNS = XPathAPI.selectSingleNode(doc, "/k:a", nsMap);
+
+		assertNotNull(aWithoutNS);
+	}
 }
