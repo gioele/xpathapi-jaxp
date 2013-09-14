@@ -71,4 +71,14 @@ public class SingleNodeTest extends TestBase {
 
 		assertNull(node);
 	}
+
+	@Test
+	public void extractNSFromRoot() throws Exception {
+		String docStr = "<a xmlns='abc' xmlns:k='def'><k:b/></a>";
+		Document doc = documentFromString(docStr);
+
+		Node node = XPathAPI.selectSingleNode(doc, "//k:b");
+
+		assertNotNull(node);
+	}
 }

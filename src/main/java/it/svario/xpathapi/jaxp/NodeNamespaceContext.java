@@ -31,10 +31,11 @@ class NodeNamespaceContext implements NamespaceContext {
 	}
 
 	private void extractNamespacesFromNode(Node node) {
-		NamedNodeMap attrs = node.getAttributes();
-		if (attrs == null) {
-			return;
+		if (node.getParentNode() == null) {
+			node = node.getFirstChild();
 		}
+
+		NamedNodeMap attrs = node.getAttributes();
 
 		for (int i = 0; i < attrs.getLength(); i++) {
 			Node attr = attrs.item(i);
