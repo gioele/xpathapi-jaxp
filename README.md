@@ -96,15 +96,15 @@ To get the `<k:d>` node from this document
 you can use a manual mapping
 
 	Map<String, String> nsMap = new HashMap<String, String>();
-	nsMap.put('k', 'http://ns.example.org/foobar');
+	nsMap.put("k", "http://ns.example.org/foobar");
 
-	Node d = XPathAPI.selectSingleNode(doc, '//k:d', nsMap);
+	Node d = XPathAPI.selectSingleNode(doc, "//k:d", nsMap);
 
 or you can choose `<c>` as the _namespace node_
 
-	Node nsNode = XPathAPI.selectSingleNode(doc, '/a/b/c');
+	Node nsNode = XPathAPI.selectSingleNode(doc, "/a/b/c");
 
-	Node d = XPathAPI.selectSingleNode(doc, '//k:d', nsNode);
+	Node d = XPathAPI.selectSingleNode(doc, "//k:d", nsNode);
 
 The former method is more readable, the latter is more robust.
 
