@@ -1,5 +1,4 @@
-// This is free and unencumbered software released into the public domain.
-// See the `UNLICENSE` file or <http://unlicense.org/> for more details.
+// This is free software released into the public domain (CC0 license).
 
 /**
  * Select XML nodes using XPath and a single line of Java code.

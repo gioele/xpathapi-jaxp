@@ -1,3 +1,5 @@
+// This is free software released into the public domain (CC0 license).
+
 package it.svario.xpathapi.jaxp.test;
 
 import static org.testng.Assert.assertEquals;

@@ -1,5 +1,4 @@
-// This is free and unencumbered software released into the public domain.
-// See the `UNLICENSE` file or <http://unlicense.org/> for more details.
+// This is free software released into the public domain (CC0 license).
 
 package it.svario.xpathapi.jaxp.test;
 
