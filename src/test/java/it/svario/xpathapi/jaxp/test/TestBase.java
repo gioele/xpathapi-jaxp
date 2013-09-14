@@ -20,6 +20,10 @@ public abstract class TestBase {
 		                "<k:a xmlns:k='def'><k:b>kkaakkbb11</k:b><k:b/></k:a>" +
 		                "</root>";
 
+		doc = documentFromString(docStr);
+	}
+
+	protected Document documentFromString(String docStr) throws Exception {
 		DocumentBuilderFactory df = DocumentBuilderFactory.newInstance();
 		df.setNamespaceAware(true);
 
@@ -28,6 +32,6 @@ public abstract class TestBase {
 		InputSource stream = new InputSource();
 		stream.setCharacterStream(new StringReader(docStr));
 
-		doc = docBuilder.parse(stream);
+		return docBuilder.parse(stream);
 	}
 }
